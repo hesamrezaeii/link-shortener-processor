@@ -20,6 +20,5 @@ public class Consumer {
     public void consumeClick(String shortUrl) {
         UrlClick urlClick = new UrlClick( shortUrl, new Date());
         urlClickRepository.insert(urlClick);
-        System.out.println(urlClick);
     }
 }

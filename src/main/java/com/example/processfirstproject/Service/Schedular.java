@@ -14,12 +14,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Schedular {
-    @Autowired private UrlClickRepository urlClickRepository;
+    @Autowired
+    private UrlClickRepository urlClickRepository;
 
-    @Autowired ClickHourlyRepository clickHourlyRepository;
+    @Autowired
+    ClickHourlyRepository clickHourlyRepository;
 
 
-//    @Scheduled(fixedRate=30*1000)
+    //    @Scheduled(fixedRate=30*1000)
     @Scheduled(cron = "0 0 * ? * *")
     public void feignclient() {
         Date now = new Date();
@@ -30,20 +32,14 @@ public class Schedular {
         List<ClickHourly> clickHourly = feignClientProducer.getShortUrls().stream().
                 map(s -> {
                     List<UrlClick> urlClickObj = urlClickRepository.findByShortUrl(s);
-                    List<Date> dates = urlClickObj.stream().map(
-                            urlClick -> {
-                                if(urlClick.getCreatedDate().after(hourAgo) && urlClick.getCreatedDate().before(now));
-                                    return urlClick.getCreatedDate();
-                            }
-                    ).collect(Collectors.toList());
-                    ClickHourly clickHourly1 = new ClickHourly(s,hourAgo,now,dates.size());
+                    List<Date> dates = urlClickObj.stream().filter(urlClick -> urlClick.getCreatedDate().after(hourAgo) && urlClick.getCreatedDate().before(now)).map(UrlClick::getCreatedDate).collect(Collectors.toList());
+                    ClickHourly clickHourly1 = new ClickHourly(s, hourAgo, now, dates.size());
                     clickHourlyRepository.save(clickHourly1);
                     return clickHourly1;
                 })
                 .collect(Collectors.toList());
-
-        System.out.println(clickHourlyRepository.findAll().stream()
-                .collect(Collectors.toList()));
+        System.out.println(clickHourlyRepository.findAll());
+        System.out.println(clickHourlyRepository.findByFromAndTo(hourAgo,now));
     }
     //@Scheduled(fixedRate=1*60*1000)
 //    @Scheduled(cron = "0 0 * ? * *")
