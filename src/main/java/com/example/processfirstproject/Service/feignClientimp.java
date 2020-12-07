@@ -9,7 +9,7 @@ import feign.slf4j.Slf4jLogger;
 
 public class feignClientimp {
 
-    private FeignClientProducer feignClientProducer = createClient(FeignClientProducer.class, "http://localhost:8080/all");
+    private FeignClientProducer feignClientProducer = createClient(FeignClientProducer.class, "http://localhost:8080/ten-short-urls");
 
     private static <T> T createClient(Class<T> type, String uri) {
         return Feign.builder()
@@ -19,6 +19,14 @@ public class feignClientimp {
                 .logger(new Slf4jLogger(type))
                 .logLevel(Logger.Level.FULL)
                 .target(type, uri);
+    }
+
+    public FeignClientProducer getFeignClientProducer() {
+        return feignClientProducer;
+    }
+
+    public void setFeignClientProducer(FeignClientProducer feignClientProducer) {
+        this.feignClientProducer = feignClientProducer;
     }
 }
 

@@ -13,7 +13,6 @@ public class UrlClick {
     @Id
     private String id;
     @Indexed
-    private String originalUrl;
     private String shortUrl;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Date createdDate;
@@ -29,34 +28,19 @@ public class UrlClick {
     public UrlClick() {
     }
 
-    public UrlClick(String originalUrl, String shortUrl,Date createdDate) {
-        this.originalUrl = originalUrl;
+    public UrlClick(String shortUrl,Date createdDate) {
         this.shortUrl = shortUrl;
         this.createdDate = createdDate;
 
     }
 
-
-//
-//    public UrlClick(String originalUrl, String shortUrl, long clickCount) {
-//        this.originalUrl = originalUrl;
-//        this.shortUrl = shortUrl;
-//    }
-
     public String getId() {
         return id;
     }
 
-    public String getOriginalUrl() {
-        return originalUrl;
-    }
 
     public String getShortUrl() {
         return shortUrl;
-    }
-
-    public void setOriginalUrl(String originalUrl) {
-        this.originalUrl = originalUrl;
     }
 
     public void setShortUrl(String shortUrl) {
@@ -65,7 +49,7 @@ public class UrlClick {
     
     @Override
     public String toString() {
-        return "URL{" + "id=" + this.id + ", originalUrl=" + this.originalUrl + '\'' + ", shortUrl='" + this.shortUrl + '\'' + ", date='" + this.createdDate + '\'' + '}';
+        return "URL{" + "id=" + this.id + '\'' + ", shortUrl='" + this.shortUrl + '\'' + ", date='" + this.createdDate + '\'' + '}';
     }
 
 }

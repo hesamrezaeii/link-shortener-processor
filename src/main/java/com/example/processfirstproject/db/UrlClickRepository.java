@@ -6,10 +6,10 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Stream;
 
 public interface UrlClickRepository extends MongoRepository<UrlClick,String> {
-    UrlClick findByShortUrl(String shortUrl);
-    UrlClick findByOriginalUrl(String originalUrl);
+    List<UrlClick> findByShortUrl(String shortUrl);
     List<UrlClick> findByCreatedDateBetween(@Param("from") Date from, @Param("to") Date to);
 
 }

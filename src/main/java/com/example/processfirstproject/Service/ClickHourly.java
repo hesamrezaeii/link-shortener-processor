@@ -14,14 +14,17 @@ public class ClickHourly {
     @Id
     private String id;
     @Indexed
+    String shortUrl;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date from;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date to;
-    List<UrlClick> urlClicks;
+    long clickCount;
 
-    public ClickHourly(Date from, Date to, List<UrlClick> urlClicks) {
+    public ClickHourly(String shortUrl,Date from, Date to , long clickCount) {
+        this.shortUrl = shortUrl;
         this.from = from;
         this.to = to;
-        this.urlClicks = urlClicks;
+        this.clickCount = clickCount;
+
     }
 
     public String getId() {
@@ -36,10 +39,6 @@ public class ClickHourly {
         return to;
     }
 
-    public List<UrlClick> getUrlClicks() {
-        return urlClicks;
-    }
-
     public void setFrom(Date from) {
         this.from = from;
     }
@@ -48,13 +47,17 @@ public class ClickHourly {
         this.to = to;
     }
 
-    public void setUrlClicks(List<UrlClick> urlClicks) {
-        this.urlClicks = urlClicks;
+    public void setShortUrl(String shortUrl) {
+        this.shortUrl = shortUrl;
+    }
+
+    public void setClickCount(long clickCount) {
+        this.clickCount = clickCount;
     }
 
     @Override
     public String toString() {
-        return "clicked Url stats {" + "id=" + this.id + ", from=" + this.from + '\'' + " to='" + this.to + '\'' + ", urls='" + this.urlClicks + '\'' + '}';
+        return "clicked Url stats {'" + " id=" + this.id + ", shortUrl="+ this.shortUrl +", from=" + this.from + ", to=" + this.to + ", click count =" + this.clickCount + '\'' +'}';
     }
 
 }

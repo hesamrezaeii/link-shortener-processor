@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 public interface FeignClientProducer {
     @RequestLine("GET")
-    public List<Url> getUrls();
+    public List<String> getShortUrls();
 
 }
 

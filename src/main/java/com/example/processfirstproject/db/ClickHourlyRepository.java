@@ -9,5 +9,6 @@ import java.util.Date;
 import java.util.List;
 
 public interface ClickHourlyRepository extends MongoRepository<ClickHourly,String>{
+    ClickHourly findByFromAndTo(Date from , Date to);
 }
 
