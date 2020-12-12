@@ -1,9 +1,8 @@
-package com.example.processfirstproject.db;
+package com.example.processfirstproject.mongo.repo;
 
 
-import com.example.processfirstproject.Service.ClickHourly;
+import com.example.processfirstproject.mongo.document.ClickHourly;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.repository.query.Param;
 
 import java.util.Date;
 import java.util.List;

@@ -1,10 +1,35 @@
 server:
   port: 8081
-Spring:
+#spring:
+#  data:
+#    mongodb:
+#      host: localhost
+#      port: 27017
+#Spring:
+#  kafka:
+#    consumer:
+#      bootstrap-servers: localhost:9092
+#      group-id: "group_id"
+#      auto-offset-reset: earliest
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+spring:
+  cloud:
+    loadbalancer:
+      ribbon:
+        enable: false
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
   kafka:
+    bootstrap-servers: ip_here
     consumer:
-      bootstrap-servers: localhost:9092
-      group-id: "group_id"
+      group-id: group_id
       auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: 'com.example.kafka'

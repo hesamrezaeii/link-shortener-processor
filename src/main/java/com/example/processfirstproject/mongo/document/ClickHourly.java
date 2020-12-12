@@ -1,13 +1,11 @@
-package com.example.processfirstproject.Service;
+package com.example.processfirstproject.mongo.document;
 
-import com.example.processfirstproject.Service.UrlClick;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
-import java.util.List;
 
 @Document("hourly-click-stats")
 public class ClickHourly {
